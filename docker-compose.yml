@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: vata-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - MQTT_BROKER=${MQTT_BROKER:-127.0.0.1}
+      - MQTT_PORT=${MQTT_PORT:-1883}
+      - MQTT_USERNAME=${MQTT_USERNAME:-vata}
+      - MQTT_PASSWORD=${MQTT_PASSWORD}
+      - MQTT_TOPIC=${MQTT_TOPIC:-#}
+      - PORT=3000
+      - HOST=0.0.0.0
+      - DB_PATH=/app/data/vata.db
+    volumes:
+      - ./data:/app/data
+    networks:
+      - vata-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build: ./frontend
+    container_name: vata-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - vata-network
+
+networks:
+  vata-network:
+    driver: bridge
+
+volumes:
+  vata-data:

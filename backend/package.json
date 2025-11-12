@@ -1,0 +1,22 @@
+{
+  "name": "vata-backend",
+  "version": "1.0.0",
+  "description": "MQTT Energy Data Dashboard Backend",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": ["mqtt", "energy", "dashboard"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^5.3.4",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "ws": "^8.16.0",
+    "better-sqlite3": "^9.2.2",
+    "dotenv": "^16.3.1"
+  }
+}

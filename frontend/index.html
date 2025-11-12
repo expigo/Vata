@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vata Energy Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Vata Energy Dashboard</h1>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="label">MQTT:</span>
+                    <span id="mqtt-status" class="status-indicator">Connecting...</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">WebSocket:</span>
+                    <span id="ws-status" class="status-indicator">Connecting...</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">Last Update:</span>
+                    <span id="last-update">Never</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="overview">Overview</button>
+            <button class="tab-button" data-tab="household">Household (Krol)</button>
+            <button class="tab-button" data-tab="ice-rink">Ice Rink (MOSIR)</button>
+            <button class="tab-button" data-tab="all-systems">All Systems</button>
+        </nav>
+
+        <main>
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="dashboard-grid">
+                    <section class="card">
+                        <h2>🏠 Household Systems</h2>
+                        <div id="household-summary" class="system-summary">
+                            <div class="loading">Loading data...</div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <h2>🧊 Ice Rink Systems</h2>
+                        <div id="ice-rink-summary" class="system-summary">
+                            <div class="loading">Loading data...</div>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="card recent-readings">
+                    <h2>📊 Recent Activity</h2>
+                    <div id="recent-activity" class="activity-feed">
+                        <div class="loading">Loading recent activity...</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Household Tab -->
+            <div id="household" class="tab-content">
+                <div id="household-systems" class="systems-grid">
+                    <div class="loading">Loading household systems...</div>
+                </div>
+            </div>
+
+            <!-- Ice Rink Tab -->
+            <div id="ice-rink" class="tab-content">
+                <div id="ice-rink-systems" class="systems-grid">
+                    <div class="loading">Loading ice rink systems...</div>
+                </div>
+            </div>
+
+            <!-- All Systems Tab -->
+            <div id="all-systems" class="tab-content">
+                <div id="all-systems-list" class="systems-list">
+                    <div class="loading">Loading all systems...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
