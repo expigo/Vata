@@ -1,11 +1,16 @@
 // Configuration
+// Auto-detect protocol (http/https and ws/wss) based on the current page
+const isSecure = window.location.protocol === 'https:';
+const httpProtocol = isSecure ? 'https' : 'http';
+const wsProtocol = isSecure ? 'wss' : 'ws';
+
 const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:3000'
-    : `http://${window.location.hostname}:3000`;
+    : `${httpProtocol}://${window.location.hostname}:3000`;
 
 const WS_URL = window.location.hostname === 'localhost'
     ? 'ws://localhost:3000'
-    : `ws://${window.location.hostname}:3000`;
+    : `${wsProtocol}://${window.location.hostname}:3000`;
 
 // State
 let ws = null;
